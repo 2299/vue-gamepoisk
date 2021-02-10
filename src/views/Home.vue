@@ -1,20 +1,35 @@
 <template>
   <div class="home">
-    <h1>Welcome, {{ name }}</h1>
-    <router-link to="/about">About</router-link><br>
-
-    <button @click="Logout">Logout</button>
+    <h1>Привет, {{ name }}</h1>
+      <main class="main">
+        <section class="main-cards" id="main-cards">
+          <card-game v-cloak></card-game>
+        </section>
+     </main>
+    <button @click="Logout">Выйти</button>
   </div>
 </template>
 
+<style lang="scss">
+.main {
+  margin: 40px 10%;
+}
+[v-cloak] > * { display:none }
+[v-cloak]::before { content: "loading…" }
+</style>
 <script>
 import { ref, onBeforeMount } from 'vue'
 import firebase from 'firebase'
 
-export default {
-  setup() {
+import Card from '../components/Card'
 
-    const name = ref("");
+export default {
+  components: {
+      'card-game':Card
+  },
+
+  setup() {
+  const name = ref("");
 
   onBeforeMount(() => {
     const user = firebase.auth().currentUser;
@@ -34,7 +49,13 @@ export default {
   return { 
     name,
     Logout
-  }
-  }  
+    
+    }
+  }, 
+
+  methods: {
+
+  },
+
 }
 </script>

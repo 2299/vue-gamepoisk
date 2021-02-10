@@ -1,11 +1,14 @@
 <template>
   <div class="login">
-    <h1> Login </h1>
+    <h1> Войти в аккаунт </h1>
     <form @submit.prevent="Login">
-    <input type="text" placeholder="Email" v-model="email"/>
-    <input type="password" placeholder="Password" v-model="password">
+    <label for="email">Электронная почта</label>
+    <input type="text" name="email" placeholder="e-mail" v-model="email"/>
+    <br>
+    <label for="password">Пароль</label>
+    <input type="password" placeholder="Пароль" v-model="password">
     <input type="submit" value="Login">
-    <p>Need an account?  <router-link to="/register">Register here</router-link></p>
+    <p>Нет аккаунта? <router-link to="/register">Регистрация</router-link></p>
   </form>
   </div>
 </template>
